@@ -3,6 +3,7 @@ package wg.roomis.launchertest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import java.util.Timer;
@@ -13,10 +14,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Timer timer;
 
+    private UpdateUrlProvider apiContentProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        apiContentProvider = new UpdateUrlProvider(this);
     }
 
     public void start(View view) {
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 1000, 60 * 1000);
 
+
+        Log.d("updateUrl", apiContentProvider.getUpdateUrl());
 
     }
 }
